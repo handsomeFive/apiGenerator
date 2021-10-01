@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+const inquirer = require("inquirer");
+const rp = require("request-promise");
+const { readJson } = require("../lib/index");
+// 修改控制台字符串的样式
+const chalk = require("chalk");
+// node 内置文件模块
+const fs = require("fs");
+const message = [
+  {
+    name: "url",
+    type: "input",
+    message: "请输入api地址",
+    validate(val) {
+      if (val === "") {
+        return "Address is required!";
+      } else {
+        return true;
+      }
+    },
+  },
+  {
+    name: "type",
+    type: "list",
+    message: "请选择文档类型",
+    choices: ["Swagger", "Yaml"],
+    validate(val) {
+      console.log(val);
+      if (val === "") return "The url is required!";
+      return true;
+    },
+  },
+];
+
+inquirer.prompt(message).then((res) => {
+  rp({ uri: res.url, method: "GET" }).then((res) => console.log(readJson(res)));
+});
