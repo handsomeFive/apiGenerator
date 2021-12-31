@@ -21,7 +21,7 @@ function shiftType(obj, useGenerics) {
       dictionary[additionalProperties.type]
     }`;
   }
-  $ref = $ref || items?.$ref;
+  $ref = $ref || (items ? items.$ref : null);
   let result = $ref
     ? $ref.split("/").pop()
     : dictionary[type === "array" ? items.type : type];
