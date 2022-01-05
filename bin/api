@@ -20,23 +20,23 @@ const message = [
       }
     },
   },
-  {
-    name: "type",
-    type: "list",
-    message: "请选择文档类型",
-    choices: ["Swagger", "Yaml"],
-    validate(val) {
-      console.log(val);
-      if (val === "") return "The url is required!";
-      return true;
-    },
-  },
+  // {
+  //   name: "type",
+  //   type: "list",
+  //   message: "请选择文档类型",
+  //   choices: ["Swagger", "Yaml"],
+  //   validate(val) {
+  //     console.log(val);
+  //     if (val === "") return "The url is required!";
+  //     return true;
+  //   },
+  // },
 ];
 
 inquirer.prompt(message).then((res) => {
   fs.readFile("./api-generator.json", (err, value) => {
     if (err) {
-      console.log(chalk.red(err));
+      console.log(chalk.red("请在根目录添加配置文件(api-generator.json)"));
     } else {
       const config = JSON.parse(value);
       if (!config.requestDefaultPath && !config.requestPath) {

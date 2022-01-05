@@ -1,0 +1,6 @@
+/node_modules
+/mock
+.gitignore
+.package-lock.json
+api-generate.json
+yarn.lock

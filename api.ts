@@ -1,4 +1,4 @@
-import request from './request.js';
+import { request } from '@/api';
 
 interface ApiResponse {
   code: number;
@@ -159,7 +159,7 @@ export async function getV2UserUsername(username: string){
   })
 }
 
-export async function putV2UserUsername(username: string,data: User){
+export async function putV2UserUsername(username: string, data: User){
   return request(`/v2/user/${username}`, {
     method: 'put',
     data,
