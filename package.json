@@ -1,5 +1,5 @@
 {
-  "name": "api_generator",
+  "name": "@grig/api_generator",
   "version": "1.0.0",
   "description": "根据swagger json 生产js-api",
   "main": "index.js",
