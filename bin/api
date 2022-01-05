@@ -4,7 +4,8 @@ const rp = require("request-promise");
 const ora = require("ora");
 const { generator } = require("../lib/index");
 const spinner = ora("Loading");
-const path = require("path")
+const fs = require("fs");
+const chalk = require("chalk");
 // 修改控制台字符串的样式
 const message = [
   {
@@ -33,8 +34,25 @@ const message = [
 ];
 
 inquirer.prompt(message).then((res) => {
-  spinner.start();
-  rp({ uri: res.url, method: "GET" })
-    .then(generator)
-    .finally(() => spinner.stop());
+  fs.readFile("./api-generator.json", (err, value) => {
+    if (err) {
+      console.log(chalk.red(err));
+    } else {
+      const config = JSON.parse(value);
+      if (!config.requestDefaultPath && !config.requestPath) {
+        console.log(
+          chalk.red(
+            "请在配置文件中指定request对象的引入地址(requestPath/requestDefaultPath)"
+          )
+        );
+      } else {
+        spinner.start();
+        rp({ uri: res.url, method: "GET" })
+          .then((res) => {
+            generator(res, config);
+          })
+          .finally(() => spinner.stop());
+      }
+    }
+  });
 });

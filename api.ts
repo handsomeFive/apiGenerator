@@ -1,3 +1,5 @@
+import request from './request.js';
+
 interface ApiResponse {
   code: number;
   message: string;
@@ -60,21 +62,21 @@ interface getV2UserLoginRequest {
   password: string;
 }
 
-export async function postV2PetPetIdUploadImage(petId: number, ){
+export async function postV2PetPetIdUploadImage(petId: number){
   return request<ApiResponse>(`/v2/pet/${petId}/uploadImage`, {
     method: 'post',
   })
 }
 
 export async function postV2Pet(data: Pet){
-  return request<>(`/v2/pet`, {
+  return request(`/v2/pet`, {
     method: 'post',
     data,
   })
 }
 
 export async function putV2Pet(data: Pet){
-  return request<>(`/v2/pet`, {
+  return request(`/v2/pet`, {
     method: 'put',
     data,
   })
@@ -100,22 +102,15 @@ export async function getV2PetPetId(petId: number){
   })
 }
 
-export async function postV2PetPetId(petId: number, ){
-  return request<>(`/v2/pet/${petId}`, {
+export async function postV2PetPetId(petId: number){
+  return request(`/v2/pet/${petId}`, {
     method: 'post',
   })
 }
 
-export async function deleteV2PetPetId(  api_key?: string;
-petId: number){
-  return request<>(`/v2/pet/${petId}`, {
+export async function deleteV2PetPetId(petId: number){
+  return request(`/v2/pet/${petId}`, {
     method: 'delete',
-  })
-}
-
-export async function getV2StoreInventory(){
-  return request<getV2StoreInventoryResponse>(`/v2/store/inventory`, {
-    method: 'get',
   })
 }
 
@@ -133,13 +128,26 @@ export async function getV2StoreOrderOrderId(orderId: number){
 }
 
 export async function deleteV2StoreOrderOrderId(orderId: number){
-  return request<>(`/v2/store/order/${orderId}`, {
+  return request(`/v2/store/order/${orderId}`, {
     method: 'delete',
   })
 }
 
+export async function getV2StoreInventory(){
+  return request<getV2StoreInventoryResponse>(`/v2/store/inventory`, {
+    method: 'get',
+  })
+}
+
+export async function postV2UserCreateWithArray(data: User[]){
+  return request(`/v2/user/createWithArray`, {
+    method: 'post',
+    data,
+  })
+}
+
 export async function postV2UserCreateWithList(data: User[]){
-  return request<>(`/v2/user/createWithList`, {
+  return request(`/v2/user/createWithList`, {
     method: 'post',
     data,
   })
@@ -151,15 +159,15 @@ export async function getV2UserUsername(username: string){
   })
 }
 
-export async function putV2UserUsername(data: User){
-  return request<>(`/v2/user/${username}`, {
+export async function putV2UserUsername(username: string,data: User){
+  return request(`/v2/user/${username}`, {
     method: 'put',
     data,
   })
 }
 
 export async function deleteV2UserUsername(username: string){
-  return request<>(`/v2/user/${username}`, {
+  return request(`/v2/user/${username}`, {
     method: 'delete',
   })
 }
@@ -172,20 +180,13 @@ export async function getV2UserLogin(params: getV2UserLoginRequest){
 }
 
 export async function getV2UserLogout(){
-  return request<>(`/v2/user/logout`, {
+  return request(`/v2/user/logout`, {
     method: 'get',
   })
 }
 
-export async function postV2UserCreateWithArray(data: User[]){
-  return request<>(`/v2/user/createWithArray`, {
-    method: 'post',
-    data,
-  })
-}
-
 export async function postV2User(data: User){
-  return request<>(`/v2/user`, {
+  return request(`/v2/user`, {
     method: 'post',
     data,
   })

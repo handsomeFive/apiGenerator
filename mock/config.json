@@ -1,6 +1,6 @@
 {
-    "outPath": "", 
-    "requestSrc": "",
-    "template":"request<REQ,RES>(PATH,{})",
-    "template1":"request<RES>(PATH,{DATA})"
+  "output": "/src", // 生成文件位置
+  "requestPath": "@/api", // request 对象位置 defalt path
+  "requestDefaultPath": "", // request 对象位置
+  "pathPrefix": "" // 路径前缀
 }
